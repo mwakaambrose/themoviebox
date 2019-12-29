@@ -13,4 +13,8 @@
     <string name="_2019_12_29">2019-12-29</string>
     <string name="lorem_ipsum">Chicagoan Frank Gallagher is the proud single dad of six smart, industrious, independent kids, who without him would be... perhaps better off. When Frank\'s not at the bar spending what little money they have, he\'s passed out on the floor. But the kids have found ways to grow up in spite of him. They may not be like any family you know, but they make no apologies for being exactly who they are.</string>
     <string name="top_rated">Top Rated</string>
+    <string name="upcoming">Upcoming</string>
+    <string name="popular">Popular</string>
+    <string name="search_keyword">Search keyword</string>
+    <string name="trending">Trending this week</string>
 </resources>

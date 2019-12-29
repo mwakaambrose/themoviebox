@@ -5,7 +5,7 @@ import com.google.gson.annotations.SerializedName;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TopRated {
+public class Trending {
 
     @SerializedName("poster_path")
     private String posterPath;
@@ -34,6 +34,9 @@ public class TopRated {
     @SerializedName("title")
     private String title;
 
+    @SerializedName("name")
+    private String name;
+
     @SerializedName("backdrop_path")
     private String backdropPath;
 
@@ -49,21 +52,10 @@ public class TopRated {
     @SerializedName("vote_average")
     private Double voteAverage;
 
-    public TopRated(
-            String posterPath,
-            boolean adult,
-            String overview,
-            String releaseDate,
-            List<Integer> genreIds,
-            Integer id,
-            String originalTitle,
-            String originalLanguage,
-            String title,
-            String backdropPath,
-            Double popularity,
-            Integer voteCount,
-            Boolean video,
-            Double voteAverage) {
+    @SerializedName("media_type")
+    private String mediaType;
+
+    public Trending(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String name, String backdropPath, Double popularity, Integer voteCount, Boolean video, Double voteAverage, String mediaType) {
         this.posterPath = posterPath;
         this.adult = adult;
         this.overview = overview;
@@ -73,11 +65,13 @@ public class TopRated {
         this.originalTitle = originalTitle;
         this.originalLanguage = originalLanguage;
         this.title = title;
+        this.name = name;
         this.backdropPath = backdropPath;
         this.popularity = popularity;
         this.voteCount = voteCount;
         this.video = video;
         this.voteAverage = voteAverage;
+        this.mediaType = mediaType;
     }
 
     public String getPosterPath() {
@@ -152,6 +146,14 @@ public class TopRated {
         this.title = title;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public String getBackdropPath() {
         return backdropPath;
     }
@@ -190,5 +192,13 @@ public class TopRated {
 
     public void setVoteAverage(Double voteAverage) {
         this.voteAverage = voteAverage;
+    }
+
+    public String getMediaType() {
+        return mediaType;
+    }
+
+    public void setMediaType(String mediaType) {
+        this.mediaType = mediaType;
     }
 }

@@ -1,4 +1,4 @@
-package com.mwaka.themoviedb.activities;
+package com.mwaka.themoviedb.screens;
 
 import android.content.Context;
 import android.net.Uri;

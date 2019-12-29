@@ -1,32 +1,18 @@
 package com.mwaka.themoviedb;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 
 import com.ismaeldivita.chipnavigation.ChipNavigationBar;
-import com.mwaka.themoviedb.activities.Favourites;
-import com.mwaka.themoviedb.activities.Home;
-import com.mwaka.themoviedb.activities.Movies;
-import com.mwaka.themoviedb.activities.TV;
-import com.mwaka.themoviedb.adapters.TopRatedMovieAdapter;
-import com.mwaka.themoviedb.contracts.MovieApiService;
-import com.mwaka.themoviedb.models.TopRated;
-import com.mwaka.themoviedb.models.TopRatedResponse;
+import com.mwaka.themoviedb.screens.Favourites;
+import com.mwaka.themoviedb.screens.Home;
+import com.mwaka.themoviedb.screens.Movies;
+import com.mwaka.themoviedb.screens.TV;
 
-import java.util.List;
 import java.util.Objects;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
-import retrofit2.Retrofit;
-import retrofit2.converter.gson.GsonConverterFactory;
 
 public class MainActivity extends AppCompatActivity implements
         Home.OnFragmentInteractionListener,

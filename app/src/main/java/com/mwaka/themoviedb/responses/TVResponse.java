@@ -1,18 +1,18 @@
-package com.mwaka.themoviedb.models;
-
-import android.graphics.Movie;
+package com.mwaka.themoviedb.responses;
 
 import com.google.gson.annotations.SerializedName;
+import com.mwaka.themoviedb.models.Movie;
+import com.mwaka.themoviedb.models.TVShow;
 
 import java.util.List;
 
-public class TopRatedResponse {
+public class TVResponse {
 
     @SerializedName("page")
     private int page;
 
     @SerializedName("results")
-    private List<TopRated> results;
+    private List<TVShow> results;
 
     @SerializedName("total_results")
     private int totalResults;
@@ -28,11 +28,11 @@ public class TopRatedResponse {
         this.page = page;
     }
 
-    public List<TopRated> getResults() {
+    public List<TVShow> getResults() {
         return results;
     }
 
-    public void setResults(List<TopRated> results) {
+    public void setResults(List<TVShow> results) {
         this.results = results;
     }
 
@@ -51,5 +51,4 @@ public class TopRatedResponse {
     public void setTotalPages(int totalPages) {
         this.totalPages = totalPages;
     }
-
 }
