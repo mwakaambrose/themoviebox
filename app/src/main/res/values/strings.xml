@@ -1,0 +1,16 @@
+<resources>
+    <string name="app_name">The Movie Box</string>
+    <string name="_5_0">5.0</string>
+    <string name="home">Home</string>
+    <string name="movie">Movies</string>
+    <string name="tv">TV</string>
+    <string name="favourite">Favourites</string>
+    <string name="movie_cover">Movie cover</string>
+    <string name="ratings">Ratings</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="_2019_12_29">2019-12-29</string>
+    <string name="lorem_ipsum">Chicagoan Frank Gallagher is the proud single dad of six smart, industrious, independent kids, who without him would be... perhaps better off. When Frank\'s not at the bar spending what little money they have, he\'s passed out on the floor. But the kids have found ways to grow up in spite of him. They may not be like any family you know, but they make no apologies for being exactly who they are.</string>
+    <string name="top_rated">Top Rated</string>
+</resources>
