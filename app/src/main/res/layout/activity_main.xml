@@ -7,7 +7,34 @@
     android:background="#f7f7f7"
     tools:context=".MainActivity">
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="50dp"
+        android:layout_margin="16dp"
+        android:background="@color/colorWhite"
+        app:cardCornerRadius="5dp"
+        app:cardElevation="2dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <EditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:autofillHints="@string/movie"
+            android:background="@drawable/search_field_bg"
+            android:drawableEnd="@drawable/ic_search_black_24dp"
+            android:ems="10"
+            android:hint="@string/search_keyword"
+            android:inputType="text"
+            android:paddingStart="10dp"
+            android:paddingEnd="10dp"
+            tools:targetApi="o" />
+    </androidx.cardview.widget.CardView>
+
     <FrameLayout
+        android:layout_marginTop="60dp"
         android:id="@+id/fragment_holder"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
