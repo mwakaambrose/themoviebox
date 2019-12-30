@@ -19,6 +19,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:padding="8dp"
         android:layout_marginTop="430dp"
         android:background="@color/colorWhite"
         app:cnb_menuResource="@menu/bottom_menu"

@@ -1,0 +1,193 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:orientation="vertical"
+    tools:context=".screens.MovieDetails">
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior"
+        tools:context=".screens.MovieDetails"
+        tools:showIn="@layout/activity_movie_details">
+
+        <LinearLayout
+            android:background="@color/colorBlack"
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.appbar.AppBarLayout
+                android:id="@+id/app_bar"
+                android:layout_width="match_parent"
+                android:layout_height="230dp"
+                android:background="@color/colorGreyLight"
+                android:fitsSystemWindows="true"
+                android:theme="@style/AppTheme.AppBarOverlay">
+
+                <ImageView
+                    android:id="@+id/backdrop_img"
+                    android:alpha="0.6"
+                    android:scaleType="centerCrop"
+                    android:contentDescription="@string/movie_backdrop"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:src="@drawable/backdrop"/>
+            </com.google.android.material.appbar.AppBarLayout>
+
+            <LinearLayout
+                android:translationZ="@dimen/fab_margin"
+                android:orientation="horizontal"
+                android:layout_weight="3"
+                android:layout_marginStart="@dimen/text_margin"
+                android:layout_marginEnd="@dimen/text_margin"
+                android:layout_marginTop="-89dp"
+                android:layout_width="match_parent"
+                android:layout_height="0dp">
+
+                <androidx.cardview.widget.CardView
+                    app:cardElevation="10dp"
+                    android:layout_margin="1dp"
+                    app:cardCornerRadius="5dp"
+                    android:layout_width="150dp"
+                    android:layout_height="200dp">
+                    <ImageView
+                        android:id="@+id/poster_img"
+                        android:scaleType="centerCrop"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:src="@drawable/poster"
+                        android:contentDescription="@string/popular" />
+                </androidx.cardview.widget.CardView>
+
+                <LinearLayout
+                    android:paddingTop="30dp"
+                    android:layout_marginStart="10dp"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <TextView
+                        android:id="@+id/movie_title"
+                        android:textSize="20sp"
+                        android:textColor="@color/colorWhite"
+                        android:fontFamily="@font/sourcesanspro_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/app_name" />
+                    <TextView
+                        android:id="@+id/movie_rating"
+                        android:textColor="@color/colorWhite"
+                        android:fontFamily="@font/sourcesanspro_light"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_5_0" />
+                    <RatingBar
+                        android:id="@+id/rating_bar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        style="?android:attr/ratingBarStyleSmall"
+                        android:numStars="10"
+                        android:stepSize="0.1"
+                        android:rating="1"
+                        android:progressBackgroundTint="@color/colorGreyLight"
+                        android:progressTint="@color/colorGoldenYellow"
+                        android:isIndicator="true" />
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/release_date"
+                        android:textColor="@color/colorWhite"
+                        android:fontFamily="@font/sourcesanspro_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/_2019_12_29" />
+                    <TextView
+                        android:visibility="gone"
+                        android:id="@+id/run_time"
+                        android:textColor="@color/colorWhite"
+                        android:fontFamily="@font/sourcesanspro_regular"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/run_time" />
+
+                    <TextView
+                        android:layout_marginTop="5dp"
+                        android:id="@+id/genres"
+                        android:textColor="@color/colorWhite"
+                        android:fontFamily="@font/sourcesanspro_bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"/>
+                </LinearLayout>
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_margin="@dimen/text_margin"
+                android:orientation="vertical"
+                android:layout_width="match_parent"
+                android:layout_height="500dp">
+                <TextView
+                    android:visibility="gone"
+                    android:id="@+id/movie_director"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/sourcesanspro_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/directed_by_mwaka_ambrose" />
+                <TextView
+                    android:textColor="@color/colorWhite"
+                    android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/sourcesanspro_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/casts" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/cast_recycler_view"/>
+
+                <TextView
+                    android:textColor="@color/colorWhite"
+                    android:textSize="18sp"
+                    android:layout_marginTop="16dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/sourcesanspro_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/storyline" />
+                <TextView
+                    android:id="@+id/moview_overview"
+                    android:fontFamily="@font/sourcesanspro_regular"
+                    android:textColor="@color/colorWhite"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/app_name" />
+                <TextView
+                    android:textColor="@color/colorWhite"
+                    android:textSize="24sp"
+                    android:layout_marginTop="8dp"
+                    android:layout_marginBottom="5dp"
+                    android:fontFamily="@font/sourcesanspro_bold"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/crew" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:id="@+id/crew_recycler_view"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</LinearLayout>

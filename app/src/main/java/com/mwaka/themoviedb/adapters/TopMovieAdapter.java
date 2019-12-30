@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mwaka.themoviedb.R;
+import com.mwaka.themoviedb.constants.URLs;
 import com.mwaka.themoviedb.models.Movie;
 import com.squareup.picasso.Picasso;
 
@@ -21,16 +22,22 @@ public class TopMovieAdapter extends RecyclerView.Adapter<TopMovieAdapter.MovieV
     private List<Movie> movies;
     private int rowLayout;
     private Context context;
-    private static final String IMAGE_URL_BASE_PATH = "http://image.tmdb.org/t/p/w342//";
 
-    public TopMovieAdapter(List<Movie> movies, int rowLayout, Context context) {
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Movie item);
+    }
+
+    public TopMovieAdapter(List<Movie> movies, int rowLayout, Context context, OnItemClickListener listener) {
         this.movies = movies;
         this.rowLayout = rowLayout;
         this.context = context;
+        this.listener = listener;
     }
 
     //A view holder inner class where we get reference to the views in the layout using their ID
-    public static class MovieViewHolder extends RecyclerView.ViewHolder {
+    public class MovieViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayout moviesLayout;
         TextView movieTitle;
@@ -50,6 +57,14 @@ public class TopMovieAdapter extends RecyclerView.Adapter<TopMovieAdapter.MovieV
             rating = v.findViewById(R.id.rating);
             rating_bar = v.findViewById(R.id.rating_bar);
         }
+
+        public void bind(final Movie item, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
+        }
     }
 
     @Override
@@ -61,7 +76,7 @@ public class TopMovieAdapter extends RecyclerView.Adapter<TopMovieAdapter.MovieV
 
     @Override
     public void onBindViewHolder(MovieViewHolder holder, final int position) {
-        String image_url = IMAGE_URL_BASE_PATH + movies.get(position).getPosterPath();
+        String image_url = URLs.IMAGE_BASE + movies.get(position).getPosterPath();
         Picasso.get()
                 .load(image_url)
                 .placeholder(R.drawable.ic_movie_black_24dp)
@@ -75,6 +90,8 @@ public class TopMovieAdapter extends RecyclerView.Adapter<TopMovieAdapter.MovieV
         float rating = Float.parseFloat(movies.get(position).getVoteAverage().toString());
 
         holder.rating_bar.setRating(rating);
+
+        holder.bind(movies.get(position), listener);
     }
 
     @Override

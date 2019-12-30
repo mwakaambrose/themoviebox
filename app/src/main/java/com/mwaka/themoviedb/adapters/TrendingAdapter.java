@@ -13,6 +13,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mwaka.themoviedb.R;
+import com.mwaka.themoviedb.constants.URLs;
 import com.mwaka.themoviedb.models.Trending;
 import com.squareup.picasso.Picasso;
 
@@ -23,7 +24,6 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
     private List<Trending> trendings;
     private int rowLayout;
     private Context context;
-    private static final String IMAGE_URL_BASE_PATH = "http://image.tmdb.org/t/p/w342//";
 
     public TrendingAdapter(List<Trending> trendings, int rowLayout, Context context) {
         this.trendings = trendings;
@@ -42,6 +42,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
 
         public TrendingViewHolder(View v) {
             super(v);
+            v.setTag(this);
             moviesLayout = v.findViewById(R.id.movies_layout);
             movieImage = v.findViewById(R.id.movie_image);
             movieTitle = v.findViewById(R.id.title);
@@ -59,7 +60,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
 
     @Override
     public void onBindViewHolder(TrendingAdapter.TrendingViewHolder holder, final int position) {
-        String image_url = IMAGE_URL_BASE_PATH + trendings.get(position).getPosterPath();
+        String image_url = URLs.IMAGE_BASE + trendings.get(position).getPosterPath();
         Picasso.get()
                 .load(image_url)
                 .placeholder(R.drawable.ic_movie_black_24dp)

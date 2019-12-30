@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.mwaka.themoviedb.R;
+import com.mwaka.themoviedb.constants.URLs;
 import com.mwaka.themoviedb.models.Movie;
 import com.mwaka.themoviedb.models.TVShow;
 import com.squareup.picasso.Picasso;
@@ -23,7 +24,6 @@ public class TopTVShowAdapter extends RecyclerView.Adapter<TopTVShowAdapter.TVSh
     private List<TVShow> movies;
     private int rowLayout;
     private Context context;
-    private static final String IMAGE_URL_BASE_PATH = "http://image.tmdb.org/t/p/w342//";
 
     public TopTVShowAdapter(List<TVShow> movies, int rowLayout, Context context) {
         this.movies = movies;
@@ -44,6 +44,7 @@ public class TopTVShowAdapter extends RecyclerView.Adapter<TopTVShowAdapter.TVSh
 
         public TVShowViewHolder(View v) {
             super(v);
+            v.setTag(this);
             moviesLayout = v.findViewById(R.id.movies_layout);
             movieImage = v.findViewById(R.id.movie_image);
             movieTitle = v.findViewById(R.id.title);
@@ -63,7 +64,7 @@ public class TopTVShowAdapter extends RecyclerView.Adapter<TopTVShowAdapter.TVSh
 
     @Override
     public void onBindViewHolder(TopTVShowAdapter.TVShowViewHolder holder, final int position) {
-        String image_url = IMAGE_URL_BASE_PATH + movies.get(position).getPosterPath();
+        String image_url = URLs.IMAGE_BASE + movies.get(position).getPosterPath();
         Picasso.get()
                 .load(image_url)
                 .placeholder(R.drawable.ic_movie_black_24dp)

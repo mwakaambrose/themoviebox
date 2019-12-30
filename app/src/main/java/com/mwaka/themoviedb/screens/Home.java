@@ -1,6 +1,7 @@
 package com.mwaka.themoviedb.screens;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
@@ -13,14 +14,18 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.TextView;
+import android.widget.Toast;
 
+import com.aquery.AQuery;
 import com.mwaka.themoviedb.MainActivity;
 import com.mwaka.themoviedb.R;
 import com.mwaka.themoviedb.adapters.TopMovieAdapter;
 import com.mwaka.themoviedb.adapters.TopTVShowAdapter;
 import com.mwaka.themoviedb.adapters.TrendingAdapter;
 import com.mwaka.themoviedb.constants.Keys;
+import com.mwaka.themoviedb.constants.URLs;
 import com.mwaka.themoviedb.contracts.MovieApiService;
 import com.mwaka.themoviedb.contracts.TVShowApiService;
 import com.mwaka.themoviedb.contracts.TrendingApiService;
@@ -33,6 +38,7 @@ import com.mwaka.themoviedb.responses.TrendingResponse;
 
 import java.io.IOException;
 import java.util.List;
+import java.util.Objects;
 
 import okhttp3.Request;
 import retrofit2.Call;
@@ -54,13 +60,7 @@ public class Home extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-    private String mParam1;
-    private String mParam2;
-
-    private OnFragmentInteractionListener mListener;
-
     private static final String TAG = MainActivity.class.getSimpleName();
-    private static final String BASE_URL = "http://api.themoviedb.org/3/";
     private static Retrofit retrofit = null;
     private RecyclerView movies_recycler_view, tv_recycler_view, trending_recycler_view;
     private TextView top_rated, up_coming, tv_top_rated, tv_popular;
@@ -70,6 +70,9 @@ public class Home extends Fragment {
     private List<TVShow> tv_top_rated_list;
 
     private List<Trending> trending;
+
+    private AQuery aQuery;
+
 
     public Home() {}
 
@@ -93,15 +96,13 @@ public class Home extends Fragment {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+
+        aQuery = new AQuery(Objects.requireNonNull(getContext()));
 
         top_rated = view.findViewById(R.id.top_rated);
         up_coming = view.findViewById(R.id.upcoming);
@@ -127,11 +128,22 @@ public class Home extends Fragment {
 
         top_rated.setOnClickListener(new View.OnClickListener() {
             @Override
-            public void onClick(View view) {
+            public void onClick(final View view) {
                 top_rated.setTextColor(getResources().getColor(R.color.colorBlack));
                 up_coming.setTextColor(getResources().getColor(R.color.colorGreyLight));
-                movies_recycler_view.setAdapter(new TopMovieAdapter(top_rated_list, R.layout.list_item_top_contents, getContext()));
-
+                movies_recycler_view.setAdapter(new TopMovieAdapter(top_rated_list, R.layout.list_item_top_contents, getContext(), new TopMovieAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Movie item) {
+                        Intent intent = new Intent(getContext(), MovieDetails.class);
+                        intent.putExtra("id", item.getId()+"");
+                        intent.putExtra("title", item.getTitle());
+                        intent.putExtra("overview", item.getOverview());
+                        intent.putExtra("poster_path", item.getPosterPath());
+                        intent.putExtra("back_drop_path", item.getBackdropPath());
+                        intent.putExtra("rating", item.getVoteAverage());
+                        aQuery.openFromLeft(intent);
+                    }
+                }));
             }
         });
 
@@ -140,7 +152,19 @@ public class Home extends Fragment {
             public void onClick(View view) {
                 up_coming.setTextColor(getResources().getColor(R.color.colorBlack));
                 top_rated.setTextColor(getResources().getColor(R.color.colorGreyLight));
-                movies_recycler_view.setAdapter(new TopMovieAdapter(upcoming_list, R.layout.list_item_top_contents, getContext()));
+                movies_recycler_view.setAdapter(new TopMovieAdapter(upcoming_list, R.layout.list_item_top_contents, getContext(), new TopMovieAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Movie item) {
+                        Intent intent = new Intent(getContext(), MovieDetails.class);
+                        intent.putExtra("id", item.getId()+"");
+                        intent.putExtra("title", item.getTitle());
+                        intent.putExtra("overview", item.getOverview());
+                        intent.putExtra("poster_path", item.getPosterPath());
+                        intent.putExtra("back_drop_path", item.getBackdropPath());
+                        intent.putExtra("rating", item.getVoteAverage());
+                        aQuery.openFromLeft(intent);
+                    }
+                }));
             }
         });
 
@@ -170,7 +194,7 @@ public class Home extends Fragment {
 
         if (retrofit == null) {
             retrofit = new Retrofit.Builder()
-                    .baseUrl(BASE_URL)
+                    .baseUrl(URLs.BASE)
                     .addConverterFactory(GsonConverterFactory.create())
                     .build();
         }
@@ -189,7 +213,20 @@ public class Home extends Fragment {
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 assert response.body() != null;
                 top_rated_list = response.body().getResults();
-                movies_recycler_view.setAdapter(new TopMovieAdapter(top_rated_list, R.layout.list_item_top_contents, getContext()));
+                movies_recycler_view.setAdapter(new TopMovieAdapter(top_rated_list, R.layout.list_item_top_contents, getContext(), new TopMovieAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(Movie item) {
+                        Intent intent = new Intent(getContext(), MovieDetails.class);
+                        intent.putExtra("id", item.getId()+"");
+                        intent.putExtra("title", item.getTitle());
+                        intent.putExtra("overview", item.getOverview());
+                        intent.putExtra("poster_path", item.getPosterPath());
+                        intent.putExtra("back_drop_path", item.getBackdropPath());
+                        intent.putExtra("release_date", item.getReleaseDate());
+                        intent.putExtra("rating", item.getVoteAverage());
+                        aQuery.openFromLeft(intent);
+                    }
+                }));
                 Log.d(TAG, "Number of Top Rated Movies received: " + top_rated_list.size());
             }
 
@@ -268,7 +305,7 @@ public class Home extends Fragment {
     public void onAttach(Context context) {
         super.onAttach(context);
         if (context instanceof OnFragmentInteractionListener) {
-            mListener = (OnFragmentInteractionListener) context;
+            //
         } else {
             throw new RuntimeException(context.toString()
                     + " must implement OnFragmentInteractionListener");

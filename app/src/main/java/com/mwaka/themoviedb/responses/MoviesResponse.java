@@ -1,8 +1,10 @@
 package com.mwaka.themoviedb.responses;
 
 import com.google.gson.annotations.SerializedName;
+import com.mwaka.themoviedb.models.Credit;
 import com.mwaka.themoviedb.models.Movie;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class MoviesResponse {
@@ -12,6 +14,9 @@ public class MoviesResponse {
 
     @SerializedName("results")
     private List<Movie> results;
+
+    @SerializedName("credits")
+    private ArrayList<Credit> credits;
 
     @SerializedName("total_results")
     private int totalResults;

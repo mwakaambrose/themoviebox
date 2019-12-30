@@ -5,7 +5,7 @@
         android:id="@+id/home"
         android:icon="@drawable/ic_apps_black_24dp"
         android:title="@string/home"
-        app:cnb_iconColor="@color/colorBlack"/>
+        app:cnb_iconColor="@color/colorDarkOrange"/>
     <item
         android:id="@+id/movies"
         android:icon="@drawable/ic_movie_black_24dp"

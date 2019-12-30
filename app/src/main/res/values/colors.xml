@@ -11,4 +11,6 @@
     <color name="colorGreyLight">#8A8A8A</color>
     <color name="colorPurple">#1F0242</color>
     <color name="colorPurpleLight">#340370</color>
+    <color name="colorGoldenYellow">#FFDF00</color>
+    <color name="colorDarkOrange">#FF8C00</color>
 </resources>
