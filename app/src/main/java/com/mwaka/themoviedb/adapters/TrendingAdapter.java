@@ -25,10 +25,17 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
     private int rowLayout;
     private Context context;
 
-    public TrendingAdapter(List<Trending> trendings, int rowLayout, Context context) {
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(Trending item);
+    }
+
+    public TrendingAdapter(List<Trending> trendings, int rowLayout, Context context, OnItemClickListener listener) {
         this.trendings = trendings;
         this.rowLayout = rowLayout;
         this.context = context;
+        this.listener = listener;
     }
 
     //A view holder inner class where we get reference to the views in the layout using their ID
@@ -40,7 +47,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
         ImageView movieImage;
         RatingBar rating_bar;
 
-        public TrendingViewHolder(View v) {
+        TrendingViewHolder(View v) {
             super(v);
             v.setTag(this);
             moviesLayout = v.findViewById(R.id.movies_layout);
@@ -48,6 +55,14 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
             movieTitle = v.findViewById(R.id.title);
             rating = v.findViewById(R.id.rating);
             rating_bar = v.findViewById(R.id.rating_bar);
+        }
+
+        public void bind(final Trending item, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
         }
     }
 
@@ -80,6 +95,7 @@ public class TrendingAdapter extends RecyclerView.Adapter<TrendingAdapter.Trendi
         float rating = Float.parseFloat(trendings.get(position).getVoteAverage().toString());
 
         holder.rating_bar.setRating(rating);
+        holder.bind(trendings.get(position), listener);
     }
 
     @Override

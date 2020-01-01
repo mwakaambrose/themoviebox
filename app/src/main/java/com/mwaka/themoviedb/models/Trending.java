@@ -7,6 +7,17 @@ import java.util.List;
 
 public class Trending {
 
+    @SerializedName("page")
+    private int page;
+
+    @SerializedName("name")
+    private
+    String name;
+
+    @SerializedName("first_air_date")
+    private
+    String firstAirDate;
+
     @SerializedName("poster_path")
     private String posterPath;
 
@@ -34,9 +45,6 @@ public class Trending {
     @SerializedName("title")
     private String title;
 
-    @SerializedName("name")
-    private String name;
-
     @SerializedName("backdrop_path")
     private String backdropPath;
 
@@ -55,7 +63,10 @@ public class Trending {
     @SerializedName("media_type")
     private String mediaType;
 
-    public Trending(String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String name, String backdropPath, Double popularity, Integer voteCount, Boolean video, Double voteAverage, String mediaType) {
+    public Trending(int page, String name, String firstAirDate, String posterPath, boolean adult, String overview, String releaseDate, List<Integer> genreIds, Integer id, String originalTitle, String originalLanguage, String title, String backdropPath, Double popularity, Integer voteCount, Boolean video, Double voteAverage, String mediaType) {
+        this.page = page;
+        this.name = name;
+        this.firstAirDate = firstAirDate;
         this.posterPath = posterPath;
         this.adult = adult;
         this.overview = overview;
@@ -65,13 +76,36 @@ public class Trending {
         this.originalTitle = originalTitle;
         this.originalLanguage = originalLanguage;
         this.title = title;
-        this.name = name;
         this.backdropPath = backdropPath;
         this.popularity = popularity;
         this.voteCount = voteCount;
         this.video = video;
         this.voteAverage = voteAverage;
         this.mediaType = mediaType;
+    }
+
+    public int getPage() {
+        return page;
+    }
+
+    public void setPage(int page) {
+        this.page = page;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getFirstAirDate() {
+        return firstAirDate;
+    }
+
+    public void setFirstAirDate(String firstAirDate) {
+        this.firstAirDate = firstAirDate;
     }
 
     public String getPosterPath() {
@@ -144,14 +178,6 @@ public class Trending {
 
     public void setTitle(String title) {
         this.title = title;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        this.name = name;
     }
 
     public String getBackdropPath() {

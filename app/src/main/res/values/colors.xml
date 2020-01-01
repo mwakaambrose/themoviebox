@@ -13,4 +13,6 @@
     <color name="colorPurpleLight">#340370</color>
     <color name="colorGoldenYellow">#FFDF00</color>
     <color name="colorDarkOrange">#FF8C00</color>
+    <color name="colorDarkBlack">#0e1111</color>
+    <color name="colorGold">#FFD700</color>
 </resources>

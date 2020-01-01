@@ -7,8 +7,6 @@ import com.mwaka.themoviedb.models.Trending;
 import java.util.List;
 
 public class TrendingResponse {
-    @SerializedName("page")
-    private int page;
 
     @SerializedName("results")
     private List<Trending> results;

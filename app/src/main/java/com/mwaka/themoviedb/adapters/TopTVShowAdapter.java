@@ -17,22 +17,31 @@ import com.mwaka.themoviedb.models.Movie;
 import com.mwaka.themoviedb.models.TVShow;
 import com.squareup.picasso.Picasso;
 
+import org.jetbrains.annotations.NotNull;
+
 import java.util.List;
 
 public class TopTVShowAdapter extends RecyclerView.Adapter<TopTVShowAdapter.TVShowViewHolder>  {
 
-    private List<TVShow> movies;
+    private List<TVShow> tvShows;
     private int rowLayout;
     private Context context;
 
-    public TopTVShowAdapter(List<TVShow> movies, int rowLayout, Context context) {
-        this.movies = movies;
+    private OnItemClickListener listener;
+
+    public interface OnItemClickListener {
+        void onItemClick(TVShow item);
+    }
+
+    public TopTVShowAdapter(List<TVShow> tvShows, int rowLayout, Context context, OnItemClickListener listener) {
+        this.tvShows = tvShows;
         this.rowLayout = rowLayout;
         this.context = context;
+        this.listener = listener;
     }
 
     //A view holder inner class where we get reference to the views in the layout using their ID
-    public static class TVShowViewHolder extends RecyclerView.ViewHolder {
+    static class TVShowViewHolder extends RecyclerView.ViewHolder {
 
         LinearLayout moviesLayout;
         TextView movieTitle;
@@ -42,7 +51,7 @@ public class TopTVShowAdapter extends RecyclerView.Adapter<TopTVShowAdapter.TVSh
         ImageView movieImage;
         RatingBar rating_bar;
 
-        public TVShowViewHolder(View v) {
+        TVShowViewHolder(View v) {
             super(v);
             v.setTag(this);
             moviesLayout = v.findViewById(R.id.movies_layout);
@@ -53,8 +62,17 @@ public class TopTVShowAdapter extends RecyclerView.Adapter<TopTVShowAdapter.TVSh
             rating = v.findViewById(R.id.rating);
             rating_bar = v.findViewById(R.id.rating_bar);
         }
+
+        void bind(final TVShow item, final OnItemClickListener listener) {
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override public void onClick(View v) {
+                    listener.onItemClick(item);
+                }
+            });
+        }
     }
 
+    @NotNull
     @Override
     public TopTVShowAdapter.TVShowViewHolder onCreateViewHolder(ViewGroup parent,
                                                               int viewType) {
@@ -64,24 +82,25 @@ public class TopTVShowAdapter extends RecyclerView.Adapter<TopTVShowAdapter.TVSh
 
     @Override
     public void onBindViewHolder(TopTVShowAdapter.TVShowViewHolder holder, final int position) {
-        String image_url = URLs.IMAGE_BASE + movies.get(position).getPosterPath();
+        String image_url = URLs.IMAGE_BASE + tvShows.get(position).getPosterPath();
         Picasso.get()
                 .load(image_url)
                 .placeholder(R.drawable.ic_movie_black_24dp)
                 .error(android.R.drawable.sym_def_app_icon)
                 .into(holder.movieImage);
-        holder.movieTitle.setText(movies.get(position).getName());
-        holder.date.setText(movies.get(position).getReleaseDate());
-        holder.movieDescription.setText(movies.get(position).getOverview());
-        holder.rating.setText(movies.get(position).getVoteAverage().toString());
+        holder.movieTitle.setText(tvShows.get(position).getName());
+        holder.date.setText(tvShows.get(position).getReleaseDate());
+        holder.movieDescription.setText(tvShows.get(position).getOverview());
+        holder.rating.setText(tvShows.get(position).getVoteAverage().toString());
 
-        float rating = Float.parseFloat(movies.get(position).getVoteAverage().toString());
+        float rating = Float.parseFloat(tvShows.get(position).getVoteAverage().toString());
 
         holder.rating_bar.setRating(rating);
+        holder.bind(tvShows.get(position), listener);
     }
 
     @Override
     public int getItemCount() {
-        return movies.size();
+        return tvShows.size();
     }
 }

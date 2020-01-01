@@ -1,26 +1,18 @@
 package com.mwaka.themoviedb.screens;
 
-import android.content.Intent;
 import android.os.Bundle;
 
 import com.aquery.AQuery;
-import com.google.android.material.appbar.AppBarLayout;
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.util.Log;
-import android.view.View;
+import android.view.WindowManager;
 import android.widget.ImageView;
-import android.widget.ListView;
 import android.widget.RatingBar;
-import android.widget.TextView;
-import android.widget.Toast;
 
 import com.mwaka.themoviedb.R;
 import com.mwaka.themoviedb.adapters.CastAdapter;
@@ -33,10 +25,8 @@ import com.mwaka.themoviedb.models.Credit;
 import com.mwaka.themoviedb.models.Crew;
 import com.mwaka.themoviedb.models.Genre;
 import com.mwaka.themoviedb.responses.AMovieResponse;
-import com.mwaka.themoviedb.responses.MoviesResponse;
 import com.squareup.picasso.Picasso;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.Objects;
 
@@ -46,7 +36,7 @@ import retrofit2.Response;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
-public class MovieDetails extends AppCompatActivity {
+public class MediaDetails extends AppCompatActivity {
 
     AQuery aQuery;
 
@@ -62,13 +52,15 @@ public class MovieDetails extends AppCompatActivity {
     List<Genre> genreList;
 
     private static Retrofit retrofit = null;
-    private static final String TAG = "MovieDetails";
+    private static final String TAG = "MediaDetails";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_movie_details);
+        setContentView(R.layout.activity_media_details);
+
+        getWindow().setFlags(WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS, WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS);
 
         aQuery = new AQuery(this);
 
@@ -133,6 +125,7 @@ public class MovieDetails extends AppCompatActivity {
 
                 aQuery.id(R.id.genres).text(genres);
                 ratingBar.setRating(response.body().getVote_average());
+                aQuery.id(R.id.movie_rating).text(String.valueOf(response.body().getVote_average()));
 
                 cast_recycler_view.setAdapter(new CastAdapter(credit.getCasts(), getApplicationContext(), new CastAdapter.OnItemClickListener() {
                     @Override

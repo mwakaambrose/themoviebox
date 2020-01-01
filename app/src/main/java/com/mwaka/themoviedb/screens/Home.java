@@ -14,9 +14,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AdapterView;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.aquery.AQuery;
 import com.mwaka.themoviedb.MainActivity;
@@ -36,11 +34,9 @@ import com.mwaka.themoviedb.responses.MoviesResponse;
 import com.mwaka.themoviedb.responses.TVResponse;
 import com.mwaka.themoviedb.responses.TrendingResponse;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Objects;
 
-import okhttp3.Request;
 import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
@@ -134,7 +130,7 @@ public class Home extends Fragment {
                 movies_recycler_view.setAdapter(new TopMovieAdapter(top_rated_list, R.layout.list_item_top_contents, getContext(), new TopMovieAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Movie item) {
-                        Intent intent = new Intent(getContext(), MovieDetails.class);
+                        Intent intent = new Intent(getContext(), MediaDetails.class);
                         intent.putExtra("id", item.getId()+"");
                         intent.putExtra("title", item.getTitle());
                         intent.putExtra("overview", item.getOverview());
@@ -155,7 +151,7 @@ public class Home extends Fragment {
                 movies_recycler_view.setAdapter(new TopMovieAdapter(upcoming_list, R.layout.list_item_top_contents, getContext(), new TopMovieAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Movie item) {
-                        Intent intent = new Intent(getContext(), MovieDetails.class);
+                        Intent intent = new Intent(getContext(), MediaDetails.class);
                         intent.putExtra("id", item.getId()+"");
                         intent.putExtra("title", item.getTitle());
                         intent.putExtra("overview", item.getOverview());
@@ -173,7 +169,20 @@ public class Home extends Fragment {
             public void onClick(View view) {
                 tv_top_rated.setTextColor(getResources().getColor(R.color.colorBlack));
                 tv_popular.setTextColor(getResources().getColor(R.color.colorGreyLight));
-                tv_recycler_view.setAdapter(new TopTVShowAdapter(tv_top_rated_list, R.layout.list_item_top_contents, getContext()));
+                tv_recycler_view.setAdapter(new TopTVShowAdapter(tv_top_rated_list, R.layout.list_item_top_contents, getContext(), new TopTVShowAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(TVShow item) {
+                        Intent intent = new Intent(getContext(), MediaDetails.class);
+                        intent.putExtra("id", item.getId()+"");
+                        intent.putExtra("title", item.getName());
+                        intent.putExtra("overview", item.getOverview());
+                        intent.putExtra("poster_path", item.getPosterPath());
+                        intent.putExtra("back_drop_path", item.getBackdropPath());
+                        intent.putExtra("release_date", item.getReleaseDate());
+                        intent.putExtra("rating", item.getVoteAverage());
+                        aQuery.openFromLeft(intent);
+                    }
+                }));
 
             }
         });
@@ -183,7 +192,20 @@ public class Home extends Fragment {
             public void onClick(View view) {
                 tv_popular.setTextColor(getResources().getColor(R.color.colorBlack));
                 tv_top_rated.setTextColor(getResources().getColor(R.color.colorGreyLight));
-                tv_recycler_view.setAdapter(new TopTVShowAdapter(tv_popular_list, R.layout.list_item_top_contents, getContext()));
+                tv_recycler_view.setAdapter(new TopTVShowAdapter(tv_popular_list, R.layout.list_item_top_contents, getContext(), new TopTVShowAdapter.OnItemClickListener(){
+                    @Override
+                    public void onItemClick(TVShow item) {
+                        Intent intent = new Intent(getContext(), MediaDetails.class);
+                        intent.putExtra("id", item.getId()+"");
+                        intent.putExtra("title", item.getName());
+                        intent.putExtra("overview", item.getOverview());
+                        intent.putExtra("poster_path", item.getPosterPath());
+                        intent.putExtra("back_drop_path", item.getBackdropPath());
+                        intent.putExtra("release_date", item.getReleaseDate());
+                        intent.putExtra("rating", item.getVoteAverage());
+                        aQuery.openFromLeft(intent);
+                    }
+                }));
             }
         });
 
@@ -216,7 +238,7 @@ public class Home extends Fragment {
                 movies_recycler_view.setAdapter(new TopMovieAdapter(top_rated_list, R.layout.list_item_top_contents, getContext(), new TopMovieAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Movie item) {
-                        Intent intent = new Intent(getContext(), MovieDetails.class);
+                        Intent intent = new Intent(getContext(), MediaDetails.class);
                         intent.putExtra("id", item.getId()+"");
                         intent.putExtra("title", item.getTitle());
                         intent.putExtra("overview", item.getOverview());
@@ -257,7 +279,20 @@ public class Home extends Fragment {
             public void onResponse(Call<TVResponse> call, Response<TVResponse> response) {
                 assert response.body() != null;
                 tv_top_rated_list = response.body().getResults();
-                tv_recycler_view.setAdapter(new TopTVShowAdapter(tv_top_rated_list, R.layout.list_item_top_contents, getContext()));
+                tv_recycler_view.setAdapter(new TopTVShowAdapter(tv_top_rated_list, R.layout.list_item_top_contents, getContext(), new TopTVShowAdapter.OnItemClickListener() {
+                    @Override
+                    public void onItemClick(TVShow item) {
+                        Intent intent = new Intent(getContext(), MediaDetails.class);
+                        intent.putExtra("id", item.getId()+"");
+                        intent.putExtra("title", item.getName());
+                        intent.putExtra("overview", item.getOverview());
+                        intent.putExtra("poster_path", item.getPosterPath());
+                        intent.putExtra("back_drop_path", item.getBackdropPath());
+                        intent.putExtra("release_date", item.getReleaseDate());
+                        intent.putExtra("rating", item.getVoteAverage());
+                        aQuery.openFromLeft(intent);
+                    }
+                }));
                 Log.d(TAG, "Number of TopRated Shows received: " + tv_top_rated_list.size());
             }
 
@@ -290,7 +325,36 @@ public class Home extends Fragment {
                 Log.d(TAG, "Response");
                 assert response.body() != null;
                 trending = response.body().getResults();
-                trending_recycler_view.setAdapter(new TrendingAdapter(trending, R.layout.list_item_trending_contents, getContext()));
+                trending_recycler_view.setAdapter(new TrendingAdapter(trending,
+                        R.layout.list_item_trending_contents,
+                        getContext(), new TrendingAdapter.OnItemClickListener(){
+
+                    @Override
+                    public void onItemClick(Trending item) {
+
+                        String title = "";
+                        String release_date = "";
+
+                        if (item.getMediaType().equals("movie")){
+                            title = item.getTitle();
+                            release_date = item.getReleaseDate();
+                        }else {
+                            title = item.getName();
+                            release_date = item.getFirstAirDate();
+                        }
+
+                        Intent intent = new Intent(getContext(), MediaDetails.class);
+                        intent.putExtra("id", item.getId()+"");
+                        intent.putExtra("title", title);
+                        intent.putExtra("overview", item.getOverview());
+                        intent.putExtra("poster_path", item.getPosterPath());
+                        intent.putExtra("back_drop_path", item.getBackdropPath());
+                        intent.putExtra("release_date", release_date);
+                        intent.putExtra("rating", item.getVoteAverage());
+                        aQuery.openFromLeft(intent);
+                    }
+                }));
+
                 Log.d(TAG, "Number of Trending received: " + trending.size());
             }
 
