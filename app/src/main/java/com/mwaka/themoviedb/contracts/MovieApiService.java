@@ -1,6 +1,6 @@
 package com.mwaka.themoviedb.contracts;
 
-import com.mwaka.themoviedb.responses.AMovieResponse;
+import com.mwaka.themoviedb.responses.AMediaResponse;
 import com.mwaka.themoviedb.responses.MoviesResponse;
 
 import retrofit2.Call;
@@ -23,6 +23,6 @@ public interface MovieApiService {
     Call<MoviesResponse> getNowPlayingMovies(@Query("api_key") String apiKey);
 
     @GET("movie/{movie_id}")
-    Call<AMovieResponse> getMovie(@Path("movie_id") String movieId, @Query("api_key") String apiKey, @Query("append_to_response") String credits);
+    Call<AMediaResponse> getMovie(@Path("movie_id") String movieId, @Query("api_key") String apiKey, @Query("append_to_response") String credits);
 
 }

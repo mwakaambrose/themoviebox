@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -14,6 +15,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
+import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.aquery.AQuery;
@@ -98,6 +101,17 @@ public class Home extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
 
+        Window window = Objects.requireNonNull(getActivity()).getWindow();
+
+        // clear FLAG_TRANSLUCENT_STATUS flag:
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS);
+
+        // add FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS flag to the window
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS);
+
+        // finally change the  color
+        window.setStatusBarColor(ContextCompat.getColor(Objects.requireNonNull(getContext()), R.color.colorDarkOrange));
+
         aQuery = new AQuery(Objects.requireNonNull(getContext()));
 
         top_rated = view.findViewById(R.id.top_rated);
@@ -137,6 +151,7 @@ public class Home extends Fragment {
                         intent.putExtra("poster_path", item.getPosterPath());
                         intent.putExtra("back_drop_path", item.getBackdropPath());
                         intent.putExtra("rating", item.getVoteAverage());
+                        intent.putExtra("media_type", "movie");
                         aQuery.openFromLeft(intent);
                     }
                 }));
@@ -158,6 +173,7 @@ public class Home extends Fragment {
                         intent.putExtra("poster_path", item.getPosterPath());
                         intent.putExtra("back_drop_path", item.getBackdropPath());
                         intent.putExtra("rating", item.getVoteAverage());
+                        intent.putExtra("media_type", "movie");
                         aQuery.openFromLeft(intent);
                     }
                 }));
@@ -180,6 +196,7 @@ public class Home extends Fragment {
                         intent.putExtra("back_drop_path", item.getBackdropPath());
                         intent.putExtra("release_date", item.getReleaseDate());
                         intent.putExtra("rating", item.getVoteAverage());
+                        intent.putExtra("media_type", "tv");
                         aQuery.openFromLeft(intent);
                     }
                 }));
@@ -203,6 +220,7 @@ public class Home extends Fragment {
                         intent.putExtra("back_drop_path", item.getBackdropPath());
                         intent.putExtra("release_date", item.getReleaseDate());
                         intent.putExtra("rating", item.getVoteAverage());
+                        intent.putExtra("media_type", "tv");
                         aQuery.openFromLeft(intent);
                     }
                 }));
@@ -246,6 +264,7 @@ public class Home extends Fragment {
                         intent.putExtra("back_drop_path", item.getBackdropPath());
                         intent.putExtra("release_date", item.getReleaseDate());
                         intent.putExtra("rating", item.getVoteAverage());
+                        intent.putExtra("media_type", "movie");
                         aQuery.openFromLeft(intent);
                     }
                 }));
@@ -290,6 +309,7 @@ public class Home extends Fragment {
                         intent.putExtra("back_drop_path", item.getBackdropPath());
                         intent.putExtra("release_date", item.getReleaseDate());
                         intent.putExtra("rating", item.getVoteAverage());
+                        intent.putExtra("media_type", "tv");
                         aQuery.openFromLeft(intent);
                     }
                 }));
@@ -351,6 +371,7 @@ public class Home extends Fragment {
                         intent.putExtra("back_drop_path", item.getBackdropPath());
                         intent.putExtra("release_date", release_date);
                         intent.putExtra("rating", item.getVoteAverage());
+                        intent.putExtra("media_type", item.getMediaType());
                         aQuery.openFromLeft(intent);
                     }
                 }));
@@ -363,17 +384,6 @@ public class Home extends Fragment {
                 Log.e(TAG, t.toString());
             }
         });
-    }
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        if (context instanceof OnFragmentInteractionListener) {
-            //
-        } else {
-            throw new RuntimeException(context.toString()
-                    + " must implement OnFragmentInteractionListener");
-        }
     }
 
     public interface OnFragmentInteractionListener {

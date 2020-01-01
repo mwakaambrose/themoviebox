@@ -1,194 +1,212 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
+    style="@style/Translucent"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
     android:orientation="vertical"
-    style="@style/Translucent"
-    tools:context=".screens.MediaDetails">
+    android:scrollbars="none"
+    app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
-    <androidx.core.widget.NestedScrollView
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:layout_behavior="@string/appbar_scrolling_view_behavior"
-        tools:context=".screens.MediaDetails"
-        tools:showIn="@layout/activity_media_details">
+        android:layout_height="wrap_content"
+        android:paddingBottom="50dp"
+        android:background="@color/colorDarkBlack"
+        android:orientation="vertical">
 
         <LinearLayout
-            android:background="@color/colorDarkBlack"
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="match_parent">
+            android:layout_height="200dp"
+            android:background="@color/colorGreyLight"
+            android:fitsSystemWindows="true">
 
-            <com.google.android.material.appbar.AppBarLayout
-                android:id="@+id/app_bar"
+            <ImageView
+                android:id="@+id/backdrop_img"
                 android:layout_width="match_parent"
-                android:layout_height="230dp"
-                android:background="@color/colorGreyLight"
-                android:fitsSystemWindows="true"
-                android:theme="@style/AppTheme.AppBarOverlay">
-
-                <ImageView
-                    android:id="@+id/backdrop_img"
-                    android:alpha="0.6"
-                    android:scaleType="centerCrop"
-                    android:contentDescription="@string/movie_backdrop"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:src="@drawable/backdrop"/>
-            </com.google.android.material.appbar.AppBarLayout>
-
-            <LinearLayout
-                android:translationZ="@dimen/fab_margin"
-                android:orientation="horizontal"
-                android:layout_weight="3"
-                android:layout_marginStart="@dimen/text_margin"
-                android:layout_marginEnd="@dimen/text_margin"
-                android:layout_marginTop="-89dp"
-                android:layout_width="match_parent"
-                android:layout_height="0dp">
-
-                <androidx.cardview.widget.CardView
-                    app:cardElevation="10dp"
-                    android:layout_margin="1dp"
-                    app:cardCornerRadius="5dp"
-                    android:layout_width="150dp"
-                    android:layout_height="200dp">
-                    <ImageView
-                        android:id="@+id/poster_img"
-                        android:scaleType="centerCrop"
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:src="@drawable/poster"
-                        android:contentDescription="@string/popular" />
-                </androidx.cardview.widget.CardView>
-
-                <LinearLayout
-                    android:paddingTop="30dp"
-                    android:layout_marginStart="10dp"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                    <TextView
-                        android:id="@+id/movie_title"
-                        android:textSize="20sp"
-                        android:textColor="@color/colorWhite"
-                        android:fontFamily="@font/sourcesanspro_bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/app_name" />
-                    <TextView
-                        android:id="@+id/movie_rating"
-                        android:textColor="@color/colorWhite"
-                        android:fontFamily="@font/sourcesanspro_light"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/_5_0" />
-                    <RatingBar
-                        android:id="@+id/rating_bar"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        style="?android:attr/ratingBarStyleSmall"
-                        android:numStars="10"
-                        android:stepSize="0.1"
-                        android:rating="1"
-                        android:progressBackgroundTint="@color/colorGreyLight"
-                        android:progressTint="@color/colorGoldenYellow"
-                        android:isIndicator="true" />
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:id="@+id/release_date"
-                        android:textColor="@color/colorWhite"
-                        android:fontFamily="@font/sourcesanspro_regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/_2019_12_29" />
-                    <TextView
-                        android:visibility="gone"
-                        android:id="@+id/run_time"
-                        android:textColor="@color/colorWhite"
-                        android:fontFamily="@font/sourcesanspro_regular"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="@string/run_time" />
-
-                    <TextView
-                        android:layout_marginTop="5dp"
-                        android:id="@+id/genres"
-                        android:textColor="@color/colorWhite"
-                        android:fontFamily="@font/sourcesanspro_bold"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-                </LinearLayout>
-            </LinearLayout>
-
-            <LinearLayout
-                android:layout_margin="@dimen/text_margin"
-                android:orientation="vertical"
-                android:layout_width="match_parent"
-                android:layout_height="500dp">
-                <TextView
-                    android:visibility="gone"
-                    android:id="@+id/movie_director"
-                    android:textColor="@color/colorWhite"
-                    android:textSize="18sp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/sourcesanspro_bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/directed_by_mwaka_ambrose" />
-                <TextView
-                    android:textColor="@color/colorWhite"
-                    android:textSize="24sp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/sourcesanspro_bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/casts" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/cast_recycler_view"/>
-
-                <TextView
-                    android:textColor="@color/colorWhite"
-                    android:textSize="18sp"
-                    android:layout_marginTop="16dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/sourcesanspro_bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/storyline" />
-                <TextView
-                    android:id="@+id/moview_overview"
-                    android:fontFamily="@font/sourcesanspro_regular"
-                    android:textColor="@color/colorWhite"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/app_name" />
-                <TextView
-                    android:textColor="@color/colorWhite"
-                    android:textSize="24sp"
-                    android:layout_marginTop="8dp"
-                    android:layout_marginBottom="5dp"
-                    android:fontFamily="@font/sourcesanspro_bold"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="@string/crew" />
-
-                <androidx.recyclerview.widget.RecyclerView
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:id="@+id/crew_recycler_view"/>
-
-            </LinearLayout>
-
+                android:layout_height="match_parent"
+                android:alpha="0.6"
+                android:background="@color/colorBlack"
+                android:contentDescription="@string/movie_backdrop"
+                android:scaleType="centerCrop"
+                android:src="@drawable/backdrop" />
         </LinearLayout>
 
-    </androidx.core.widget.NestedScrollView>
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/text_margin"
+            android:layout_marginTop="-89dp"
+            android:layout_marginEnd="@dimen/text_margin"
+            android:orientation="horizontal"
+            android:translationZ="@dimen/fab_margin">
 
-</LinearLayout>
+            <androidx.cardview.widget.CardView
+                android:layout_width="150dp"
+                android:layout_height="200dp"
+                android:layout_margin="1dp"
+                app:cardCornerRadius="5dp"
+                app:cardElevation="10dp">
+
+                <ImageView
+                    android:id="@+id/poster_img"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:contentDescription="@string/popular"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/poster" />
+            </androidx.cardview.widget.CardView>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:orientation="vertical"
+                android:paddingTop="30dp">
+
+                <TextView
+                    android:id="@+id/movie_title"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sourcesanspro_bold"
+                    android:text="@string/app_name"
+                    android:textColor="@color/colorWhite"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/movie_rating"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sourcesanspro_light"
+                    android:text="@string/_5_0"
+                    android:textColor="@color/colorWhite" />
+
+                <RatingBar
+                    android:id="@+id/rating_bar"
+                    style="?android:attr/ratingBarStyleSmall"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:isIndicator="true"
+                    android:numStars="10"
+                    android:progressBackgroundTint="@color/colorGreyLight"
+                    android:progressTint="@color/colorGoldenYellow"
+                    android:rating="1"
+                    android:stepSize="0.1" />
+
+                <TextView
+                    android:id="@+id/release_date"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/sourcesanspro_regular"
+                    android:text="@string/_2019_12_29"
+                    android:textColor="@color/colorWhite" />
+
+                <TextView
+                    android:id="@+id/run_time"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/sourcesanspro_regular"
+                    android:text="@string/run_time"
+                    android:textColor="@color/colorWhite"
+                    android:visibility="gone" />
+
+                <TextView
+                    android:id="@+id/genres"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:fontFamily="@font/sourcesanspro_bold"
+                    android:textColor="@color/colorWhite" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/text_margin"
+            android:layout_marginBottom="50dp"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/movie_director"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/sourcesanspro_bold"
+                android:text="@string/directed_by_mwaka_ambrose"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/sourcesanspro_bold"
+                android:text="@string/casts"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/cast_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/sourcesanspro_bold"
+                android:text="@string/storyline"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/moview_overview"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/sourcesanspro_regular"
+                android:text="@string/app_name"
+                android:textColor="@color/colorWhite" />
+
+            <TextView
+                android:id="@+id/seasons"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/sourcesanspro_bold"
+                android:text="@string/seasons"
+                android:textColor="@color/colorWhite"
+                android:textSize="18sp"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/seasons_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="5dp"
+                android:fontFamily="@font/sourcesanspro_bold"
+                android:text="@string/crew"
+                android:textColor="@color/colorWhite"
+                android:textSize="24sp" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/crew_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="100dp" />
+        </LinearLayout>
+
+    </LinearLayout>
+
+</ScrollView>

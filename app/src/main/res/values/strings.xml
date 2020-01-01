@@ -116,4 +116,7 @@
     <string name="crew">The Crew</string>
     <string name="musician">Musician</string>
     <string name="department">Sound</string>
+    <string name="season_1">Season 1</string>
+    <string name="episodes">45 episodes</string>
+    <string name="seasons">Seasons</string>
 </resources>

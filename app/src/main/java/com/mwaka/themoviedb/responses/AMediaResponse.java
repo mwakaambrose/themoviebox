@@ -1,20 +1,30 @@
 package com.mwaka.themoviedb.responses;
 
 import com.google.gson.annotations.SerializedName;
-import com.mwaka.themoviedb.models.Cast;
 import com.mwaka.themoviedb.models.Credit;
-import com.mwaka.themoviedb.models.Crew;
 import com.mwaka.themoviedb.models.Genre;
-import com.mwaka.themoviedb.models.Movie;
+import com.mwaka.themoviedb.models.Season;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class AMovieResponse {
+public class AMediaResponse {
 
     @SerializedName("overview")
     private
     String overview;
+
+    @SerializedName("number_of_episodes")
+    private
+    String numberOfEpisodes;
+
+    @SerializedName("number_of_seasons")
+    private
+    String numberOfSeasons;
+
+    @SerializedName("seasons")
+    private
+    List<Season> seasons;
 
     @SerializedName("genres")
     private
@@ -35,8 +45,11 @@ public class AMovieResponse {
     @SerializedName("vote_average")
     private Float vote_average;
 
-    public AMovieResponse(String overview, String name, String firstAirDate, List<Genre> genres, int page, Credit credit, int totalResults, int totalPages, Float vote_average) {
+    public AMediaResponse(String overview, String numberOfEpisodes, String numberOfSeasons, List<Season> seasons, List<Genre> genres, int page, Credit credit, int totalResults, int totalPages, Float vote_average) {
         this.overview = overview;
+        this.numberOfEpisodes = numberOfEpisodes;
+        this.numberOfSeasons = numberOfSeasons;
+        this.seasons = seasons;
         this.genres = genres;
         this.page = page;
         this.credit = credit;
@@ -51,6 +64,30 @@ public class AMovieResponse {
 
     public void setOverview(String overview) {
         this.overview = overview;
+    }
+
+    public String getNumberOfEpisodes() {
+        return numberOfEpisodes;
+    }
+
+    public void setNumberOfEpisodes(String numberOfEpisodes) {
+        this.numberOfEpisodes = numberOfEpisodes;
+    }
+
+    public String getNumberOfSeasons() {
+        return numberOfSeasons;
+    }
+
+    public void setNumberOfSeasons(String numberOfSeasons) {
+        this.numberOfSeasons = numberOfSeasons;
+    }
+
+    public List<Season> getSeasons() {
+        return seasons;
+    }
+
+    public void setSeasons(List<Season> seasons) {
+        this.seasons = seasons;
     }
 
     public List<Genre> getGenres() {

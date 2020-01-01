@@ -58,7 +58,7 @@ public class TopMovieAdapter extends RecyclerView.Adapter<TopMovieAdapter.MovieV
             rating_bar = v.findViewById(R.id.rating_bar);
         }
 
-        public void bind(final Movie item, final OnItemClickListener listener) {
+        void bind(final Movie item, final OnItemClickListener listener) {
             itemView.setOnClickListener(new View.OnClickListener() {
                 @Override public void onClick(View v) {
                     listener.onItemClick(item);
