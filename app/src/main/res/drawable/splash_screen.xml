@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+
+        android:drawable="@color/colorDarkBlack"/>
+
+    <item>
+        <bitmap
+            android:alpha="0.6"
+            android:gravity="fill"
+            android:src="@drawable/poster"/>
+    </item>
+
+    <item>
+        <scale android:drawable="@drawable/poster" android:scaleHeight="9"/>
+    </item>
+
+</layer-list>

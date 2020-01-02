@@ -7,6 +7,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".screens.Home">
     <LinearLayout
+        android:layout_marginBottom="50dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -43,11 +44,20 @@
                 android:textColor="@color/colorGreyLight" />
         </LinearLayout>
 
-        <androidx.recyclerview.widget.RecyclerView
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/movies_recycler_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:scrollbars="none" />-->
+        <com.mikelau.views.shimmer.ShimmerRecyclerViewX
             android:id="@+id/movies_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none" />
+            app:shimmer_demo_child_count="10"
+            app:shimmer_demo_grid_child_count="4"
+            app:shimmer_demo_layout="@layout/layout_shimer_horizontal"
+            app:shimmer_demo_layout_manager_type="linear_horizontal"
+            app:shimmer_demo_angle="45" />
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -78,11 +88,22 @@
                 android:layout_marginStart="16dp"
                 android:textColor="@color/colorGreyLight" />
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/tv_recycler_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:scrollbars="none" />-->
+
+        <com.mikelau.views.shimmer.ShimmerRecyclerViewX
             android:id="@+id/tv_recycler_view"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:scrollbars="none" />
+            app:shimmer_demo_child_count="10"
+            app:shimmer_demo_grid_child_count="4"
+            app:shimmer_demo_layout="@layout/layout_shimer_horizontal"
+            app:shimmer_demo_layout_manager_type="linear_horizontal"
+            app:shimmer_demo_angle="45" />
+
         <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -96,11 +117,19 @@
                 android:fontFamily="@font/sourcesanspro_bold"
                 android:text="@string/trending" />
         </LinearLayout>
-        <androidx.recyclerview.widget.RecyclerView
+<!--        <androidx.recyclerview.widget.RecyclerView-->
+<!--            android:id="@+id/trending_recycler_view"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="400dp"-->
+<!--            android:scrollbars="none" />-->
+        <com.mikelau.views.shimmer.ShimmerRecyclerViewX
             android:id="@+id/trending_recycler_view"
             android:layout_width="match_parent"
-            android:layout_height="400dp"
-            android:layout_marginBottom="50dp"
-            android:scrollbars="none" />
+            android:layout_height="500dp"
+            app:shimmer_demo_child_count="10"
+            app:shimmer_demo_grid_child_count="4"
+            app:shimmer_demo_layout="@layout/layout_shimer_vertical"
+            app:shimmer_demo_layout_manager_type="grid"
+            app:shimmer_demo_angle="45" />
     </LinearLayout>
 </ScrollView>

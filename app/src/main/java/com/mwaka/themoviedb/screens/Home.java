@@ -20,6 +20,7 @@ import android.view.WindowManager;
 import android.widget.TextView;
 
 import com.aquery.AQuery;
+import com.mikelau.views.shimmer.ShimmerRecyclerViewX;
 import com.mwaka.themoviedb.MainActivity;
 import com.mwaka.themoviedb.R;
 import com.mwaka.themoviedb.adapters.TopMovieAdapter;
@@ -61,7 +62,10 @@ public class Home extends Fragment {
 
     private static final String TAG = MainActivity.class.getSimpleName();
     private static Retrofit retrofit = null;
-    private RecyclerView movies_recycler_view, tv_recycler_view, trending_recycler_view;
+
+    private ShimmerRecyclerViewX movies_recycler_view, tv_recycler_view, trending_recycler_view;
+
+//    private RecyclerView trending_recycler_view;
     private TextView top_rated, up_coming, tv_top_rated, tv_popular;
     private List<Movie> upcoming_list;
     private List<Movie> top_rated_list;
@@ -127,9 +131,11 @@ public class Home extends Fragment {
 
         movies_recycler_view.setHasFixedSize(true);
         movies_recycler_view.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        movies_recycler_view.showShimmerAdapter();
 
         tv_recycler_view.setHasFixedSize(true);
         tv_recycler_view.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        tv_recycler_view.showShimmerAdapter();
 
         trending_recycler_view.setHasFixedSize(true);
         trending_recycler_view.setLayoutManager(new GridLayoutManager(getContext(), 2));
@@ -253,6 +259,7 @@ public class Home extends Fragment {
             public void onResponse(Call<MoviesResponse> call, Response<MoviesResponse> response) {
                 assert response.body() != null;
                 top_rated_list = response.body().getResults();
+                movies_recycler_view.hideShimmerAdapter();
                 movies_recycler_view.setAdapter(new TopMovieAdapter(top_rated_list, R.layout.list_item_top_contents, getContext(), new TopMovieAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(Movie item) {
@@ -298,6 +305,7 @@ public class Home extends Fragment {
             public void onResponse(Call<TVResponse> call, Response<TVResponse> response) {
                 assert response.body() != null;
                 tv_top_rated_list = response.body().getResults();
+                tv_recycler_view.hideShimmerAdapter();
                 tv_recycler_view.setAdapter(new TopTVShowAdapter(tv_top_rated_list, R.layout.list_item_top_contents, getContext(), new TopTVShowAdapter.OnItemClickListener() {
                     @Override
                     public void onItemClick(TVShow item) {

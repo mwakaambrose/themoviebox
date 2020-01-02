@@ -28,8 +28,6 @@ public class MainActivity extends AppCompatActivity implements
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
 
-        Objects.requireNonNull(getSupportActionBar()).hide();
-
         getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, new Home()).addToBackStack(null).commit();
 
         menu = findViewById(R.id.bottom_nav);

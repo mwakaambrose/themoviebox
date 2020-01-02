@@ -48,4 +48,6 @@ dependencies {
 
     implementation 'de.hdodenhof:circleimageview:3.0.1'
 
+    implementation 'com.github.mike14u:shimmer-recyclerview-x:1.0.3'
+
 }
