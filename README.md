@@ -11,13 +11,13 @@ Android app built as a client for the movie db site.
 Clone repo and sync gradle, everything should be fine. Here are some screenshots 
 to get you excited.
 
-<img src="screens/0.png" alt="drawing" width="400"/>
-<img src="screens/1.png" alt="drawing" width="400"/>
+<img src="screens/0.png" alt="drawing" width="200"/>
+<img src="screens/1.png" alt="drawing" width="200"/>
 
-<img src="screens/2.png" alt="drawing" width="400"/>
-<img src="screens/3.png" alt="drawing" width="400"/>
+<img src="screens/2.png" alt="drawing" width="200"/>
+<img src="screens/3.png" alt="drawing" width="200"/>
 
-<img src="screens/4.png" alt="drawing" width="400"/>
+<img src="screens/4.png" alt="drawing" width="200"/>
 
 ### License
 
