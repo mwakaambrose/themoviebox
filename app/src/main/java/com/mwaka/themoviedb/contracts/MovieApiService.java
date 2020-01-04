@@ -17,10 +17,13 @@ public interface MovieApiService {
     Call<MoviesResponse> getUpcomingMovies(@Query("api_key") String apiKey);
 
     @GET("movie/popular")
-    Call<MoviesResponse> getPopularMovies(@Query("api_key") String apiKey);
+    Call<MoviesResponse> getPopularMovies(@Query("api_key") String apiKey, @Query("page") int pageNumber);
 
     @GET("movie/now_playing")
     Call<MoviesResponse> getNowPlayingMovies(@Query("api_key") String apiKey);
+
+    @GET("movie/latest")
+    Call<AMediaResponse> getLatestMovie(@Query("api_key") String apiKey);
 
     @GET("movie/{movie_id}")
     Call<AMediaResponse> getMovie(@Path("movie_id") String movieId, @Query("api_key") String apiKey, @Query("append_to_response") String credits);

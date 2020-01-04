@@ -45,7 +45,19 @@ public class AMediaResponse {
     @SerializedName("vote_average")
     private Float vote_average;
 
-    public AMediaResponse(String overview, String numberOfEpisodes, String numberOfSeasons, List<Season> seasons, List<Genre> genres, int page, Credit credit, int totalResults, int totalPages, Float vote_average) {
+    @SerializedName("title")
+    private String title;
+
+    @SerializedName("name")
+    private String name;
+
+    @SerializedName("poster_path")
+    private String posterPath;
+
+    @SerializedName("id")
+    private int id;
+
+    public AMediaResponse(String overview, String numberOfEpisodes, String numberOfSeasons, List<Season> seasons, List<Genre> genres, int page, Credit credit, int totalResults, int totalPages, Float vote_average, String title, String name, String posterPath, int id) {
         this.overview = overview;
         this.numberOfEpisodes = numberOfEpisodes;
         this.numberOfSeasons = numberOfSeasons;
@@ -56,6 +68,10 @@ public class AMediaResponse {
         this.totalResults = totalResults;
         this.totalPages = totalPages;
         this.vote_average = vote_average;
+        this.title = title;
+        this.name = name;
+        this.posterPath = posterPath;
+        this.id = id;
     }
 
     public String getOverview() {
@@ -136,5 +152,37 @@ public class AMediaResponse {
 
     public void setVote_average(Float vote_average) {
         this.vote_average = vote_average;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getPosterPath() {
+        return posterPath;
+    }
+
+    public void setPosterPath(String posterPath) {
+        this.posterPath = posterPath;
+    }
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
     }
 }

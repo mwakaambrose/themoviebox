@@ -41,6 +41,7 @@
             android:layout_marginTop="-89dp"
             android:layout_marginEnd="@dimen/text_margin"
             android:orientation="horizontal"
+            android:background="@drawable/black_gradient"
             android:translationZ="@dimen/fab_margin">
 
             <androidx.cardview.widget.CardView
@@ -204,7 +205,7 @@
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/crew_recycler_view"
                 android:layout_width="match_parent"
-                android:layout_height="100dp" />
+                android:layout_height="wrap_content" />
         </LinearLayout>
 
     </LinearLayout>

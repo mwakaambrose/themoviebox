@@ -15,4 +15,5 @@
     <color name="colorDarkOrange">#FF8C00</color>
     <color name="colorDarkBlack">#0e1111</color>
     <color name="colorGold">#FFD700</color>
+    <color name="colorLightWhite">#f7f7f7</color>
 </resources>

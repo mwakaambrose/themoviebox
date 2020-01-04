@@ -5,20 +5,20 @@
         android:id="@+id/home"
         android:icon="@drawable/ic_apps_black_24dp"
         android:title="@string/home"
-        app:cnb_iconColor="@color/colorDarkOrange"/>
+        app:cnb_iconColor="@color/colorWhite"/>
     <item
         android:id="@+id/movies"
         android:icon="@drawable/ic_movie_black_24dp"
         android:title="@string/movie"
-        app:cnb_iconColor="@color/colorPrimary"/>
+        app:cnb_iconColor="@color/colorWhite"/>
     <item
         android:id="@+id/tv"
         android:icon="@drawable/ic_live_tv_black_24dp"
         android:title="@string/tv"
-        app:cnb_iconColor="@color/colorAccentDark" />
+        app:cnb_iconColor="@color/colorWhite" />
     <item
         android:id="@+id/favorites"
         android:icon="@drawable/ic_favorite_border_black_24dp"
         android:title="@string/favourite"
-        app:cnb_iconColor="@color/colorOrange" />
+        app:cnb_iconColor="@color/colorWhite" />
 </menu>
