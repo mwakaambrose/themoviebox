@@ -18,7 +18,8 @@ to get you excited.
 | | | |
 |:-------------------------:|:-------------------------:|:-------------------------:|
 | <img src="screens/0.png" alt="drawing" width="260"/> | <img src="screens/1.png" alt="drawing" width="260"/>| <img src="screens/2.png" alt="drawing" width="260"/> |
-| <img src="screens/3.png" alt="drawing" width="260"/> | <img src="screens/4.png" alt="drawing" width="260"/> |
+| <img src="screens/3.png" alt="drawing" width="260"/> | <img src="screens/4.png" alt="drawing" width="260"/> | <img src="screens/5.png" alt="drawing" width="260"/> |
+|<img src="screens/6.png" alt="drawing" width="260"/> | <img src="screens/7.png" alt="drawing" width="260"/>
 
 
 ### License
