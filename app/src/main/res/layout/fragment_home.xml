@@ -144,7 +144,7 @@
             android:layout_height="500dp"
             app:shimmer_demo_child_count="10"
             app:shimmer_demo_grid_child_count="4"
-            app:shimmer_demo_layout="@layout/layout_shimer_vertical"
+            app:shimmer_demo_layout="@layout/layout_shimmer_vertical"
             app:shimmer_demo_layout_manager_type="grid"
             app:shimmer_demo_angle="45" />
     </LinearLayout>

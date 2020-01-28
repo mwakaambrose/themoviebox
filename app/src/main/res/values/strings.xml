@@ -3,7 +3,7 @@
     <string name="_5_0">5.0</string>
     <string name="home">Home</string>
     <string name="movie">Movies</string>
-    <string name="tv">TV</string>
+    <string name="tv">TV Shows</string>
     <string name="favourite">Favourites</string>
     <string name="movie_cover">Movie cover</string>
     <string name="ratings">Ratings</string>
@@ -126,4 +126,6 @@
     <string name="now_playing">Now Playing</string>
     <string name="read_more">Read More</string>
     <string name="load_more">..Load more..</string>
+    <string name="airing_today">Airing Today</string>
+    <string name="on_air">On Air</string>
 </resources>

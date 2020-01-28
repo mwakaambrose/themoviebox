@@ -17,7 +17,6 @@ import java.util.Objects;
 public class MainActivity extends AppCompatActivity implements
         Home.OnFragmentInteractionListener,
         Movies.OnFragmentInteractionListener,
-        TV.OnFragmentInteractionListener,
         Favourites.OnFragmentInteractionListener {
 
     private ChipNavigationBar menu;
@@ -36,17 +35,14 @@ public class MainActivity extends AppCompatActivity implements
             @Override
             public void onItemSelected(int i) {
                 if (R.id.home == i){
-                    menu.showBadge(R.id.favorites, 1);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, new Home()).addToBackStack(null).commit();
                 }else if (R.id.movies == i){
-                    menu.showBadge(R.id.favorites, 14);
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, new Movies()).addToBackStack(null).commit();
-                }else if (R.id.tv == i){
-                    menu.showBadge(R.id.favorites, 200);
+                }else if (R.id.tv == i) {
                     getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, new TV()).addToBackStack(null).commit();
-                }else if (R.id.favorites == i){
-                    menu.showBadge(R.id.favorites, 7);
-                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, new Favourites()).addToBackStack(null).commit();
+//                }else if (R.id.favorites == i){
+//                    getSupportFragmentManager().beginTransaction().replace(R.id.fragment_holder, new Favourites()).addToBackStack(null).commit();
+//                }
                 }
             }
         });

@@ -16,9 +16,10 @@
         android:icon="@drawable/ic_live_tv_black_24dp"
         android:title="@string/tv"
         app:cnb_iconColor="@color/colorWhite" />
-    <item
-        android:id="@+id/favorites"
-        android:icon="@drawable/ic_favorite_border_black_24dp"
-        android:title="@string/favourite"
-        app:cnb_iconColor="@color/colorWhite" />
+<!--    <item-->
+<!--        android:visible="false"-->
+<!--        android:id="@+id/favorites"-->
+<!--        android:icon="@drawable/ic_favorite_border_black_24dp"-->
+<!--        android:title="@string/favourite"-->
+<!--        app:cnb_iconColor="@color/colorWhite" />-->
 </menu>

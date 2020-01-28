@@ -11,12 +11,12 @@ public interface TVShowApiService {
     @GET("tv/top_rated")
     Call<TVResponse> getTopRatedShows(@Query("api_key") String apiKey);
 
-    @GET("tv/upcoming")
-    Call<TVResponse> getUpcomingShows(@Query("api_key") String apiKey);
+    @GET("tv/airing_today")
+    Call<TVResponse> getShowsAiringToday(@Query("api_key") String apiKey);
 
     @GET("tv/popular")
     Call<TVResponse> getPopularShows(@Query("api_key") String apiKey);
 
-    @GET("tv/now_playing")
-    Call<TVResponse> getNowPlayingShows(@Query("api_key") String apiKey);
+    @GET("tv/on_the_air")
+    Call<TVResponse> getShowsOnTheAir(@Query("api_key") String apiKey, @Query("page") int page);
 }
